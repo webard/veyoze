@@ -59,6 +59,9 @@ class ProvisionCommand extends Command
             ])
             ->then(function () use ($service) {
                 //$this->success('Provisioning complete! Your environment is now set up and ready to use.');
+                file_put_contents('.veyoze.json', json_encode([
+                                                              'host' => $service->site->name
+                                                              ]));
                 $this->success($service->site->name);
             });
     }
